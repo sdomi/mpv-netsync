@@ -4,8 +4,10 @@ for the time when you want to watch something with friends in sync over the net
 
 ### Usage
 
-`mpv --script client.lua`
-`mpv --script master.lua`
+- `mpv --script client.lua` - for clients
+- `mpv --script master.lua` - for room hosts
+
+Remember: there can be multiple room clients, but there can be only **one** host.
 
 ### Installation
 
@@ -26,7 +28,6 @@ for the time when you want to watch something with friends in sync over the net
 
 ### Quirks
 
-- If mpv crashes miserably, you might have installed a plugin for a wrong version of lua. Check what version is in use by mpv (look at error paths) and what version is in use by luarocks; If they're different, install luarocks for apropriate lua version.
-- Currently, everyone can rewind, stop, pause and reset - I'll add permissions in a later version
+- If mpv crashes miserably, you might have installed a plugin for a wrong version of lua. Check what version is in use by mpv (look at error paths) and what version is in use by luarocks; If they're different, install luarocks for apropriate lua version and then repeat `httpclient` installation
 - Unencrypted pass over raw http is always a good idea (as in, don't use your real password...)
-- Dropped frames are currently a problem. Fix: restart mpv
+- Dropped frames shouldn't be a problem, but slow connection *could*
