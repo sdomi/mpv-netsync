@@ -4,18 +4,17 @@ for the time when you want to watch something with friends in sync over the net
 
 ### Usage
 
-- `mpv --script client.lua` - for clients
-- `mpv --script master.lua` - for room hosts
+- `mpv --script=client.lua` - for clients
+- `mpv --script=master.lua` - for room hosts
 
 Remember: there can be multiple room clients, but there can be only **one** host.
 
 ### Installation
 
 *Client side*
-1. Install `lua lua-dev luarocks5.2 mpv`
-2. `# luarocks install httpclient`
-3. ???
-4. Profit!
+1. Install `curl` and `mpv` - the latter should install `lua`
+2. ???
+3. Profit!
 
 *Server/OP side*
 
@@ -28,6 +27,5 @@ Remember: there can be multiple room clients, but there can be only **one** host
 
 ### Quirks
 
-- If mpv crashes miserably, you might have installed a plugin for a wrong version of lua. Check what version is in use by mpv (look at error paths) and what version is in use by luarocks; If they're different, install luarocks for apropriate lua version and then repeat `httpclient` installation
 - Unencrypted pass over raw http is always a good idea (as in, don't use your real password...)
 - Dropped frames shouldn't be a problem, but slow connection *could*
