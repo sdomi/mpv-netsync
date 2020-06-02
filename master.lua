@@ -31,7 +31,7 @@ end
 
 function reset(event)
     if event['reason'] == 'eof' then
-        r = fetch(url .. '&reset"')
+        r = fetch(url .. '&reset')
     end
 end
 
