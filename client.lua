@@ -3,6 +3,8 @@ connection_url = "http://localhost:9000/"
 pass = "baka"
 
 url = connection_url .. "?pass=" .. pass
+time = 0
+pause_time=-1
 
 function fetch(url)
 	local f = assert(io.popen('curl --silent "' .. url .. '"', 'r'))
@@ -17,7 +19,7 @@ end
 
 function update()
 	r = fetch(url .. '&isPaused')
-	if r == "1" then
+	if r == "1" or time == pause_time then
 		mp.set_property("pause", "yes")
 	else
 		mp.set_property("pause", "no")
@@ -28,8 +30,15 @@ function updateTime()
 	r = fetch(url .. '&getTime')
 	localTime = mp.get_property("playback-time")
 	if r+"2" < tonumber(localTime) or r-"2" > tonumber(localTime) then
-		mp.set_property("playback-time", r)
+		if r == time then
+			mp.set_property("pause", "yes")
+			print("It appears that the master has been disconnected - pausing.")
+			pause_time=r
+		else
+			mp.set_property("playback-time", r)
+		end
 	end
+	time = r
 end
 
 function preload()

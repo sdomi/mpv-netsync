@@ -36,10 +36,9 @@ function reset(event)
 end
 
 function preload()
-    r = fetch(url .. '&getTime')
+    r = fetch(url .. '&getTime&play')
     mp.set_property("playback-time", r)
 
-    r = fetch(url .. '&play')
     mp.set_property("pause", "no")
     mp.add_periodic_timer(0.5,update)
 end
